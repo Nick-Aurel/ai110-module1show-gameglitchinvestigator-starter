@@ -25,14 +25,28 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- **Purpose**: A Streamlit number guessing game where the player tries to guess a secret number within a limited number of attempts (difficulty controls the range + attempt limit).
+- **Bugs found**:
+  - Hints were inconsistent/backwards (e.g., guessing very high could still say “go higher”).
+  - The secret number comparison could break because the secret was sometimes treated as a string.
+  - Attempts were counting even on invalid input, and the UI range didn’t always match the active difficulty.
+- **Fixes applied**:
+  - Refactored core logic into `logic_utils.py` (`check_guess`, `parse_guess`, `get_range_for_difficulty`, `update_score`) and imported it from `app.py`.
+  - Made `check_guess` return stable outcomes (`Win` / `Too High` / `Too Low`) and fixed the hint mapping in the UI.
+  - Ensured “New Game” and difficulty changes fully reset state and that the displayed range matches the generated secret.
+  - Added a new pytest (`test_parse_guess_rejects_blank`) and verified all tests pass.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [ ] **Winning game screenshot**: Add a screenshot here showing a correct win (include the “Developer Debug Info” expander if you want to prove the secret).
+  - Suggested filename: `assets/win.png`
+  - Then replace this line with: `![Winning game](assets/win.png)`
+- [ ] **(Optional) pytest screenshot**: If you did advanced testing, add a screenshot of `pytest` passing.
+  - Suggested filename: `assets/pytest.png`
+  - Then add: `![pytest passing](assets/pytest.png)`
 
 ## 🚀 Stretch Features
 
 - [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
+
+
